@@ -1,2 +1,54 @@
-<h1>Subscriptions#new</h1>
-<p>Find me in app/views/subscriptions/new.html.erb</p>
+
+<div class>
+  <%= form_with model: @student, url: subscriptions_path, method: :post do |f| %>
+    <table class>
+      <tr>
+        <th>名前(お子様)</th>
+        <td><%= f.label :last_name, "姓" %></td>
+        <td><%= f.text_field :last_name %></td>
+        <td><%= f.label :first_name, "名" %></td>
+        <td><%= f.text_field :first_name %></td>
+      </tr>
+      <tr>
+        <th>カナ名(お子様)</th>
+        <td><%= f.label :last_name_kana, "セイ" %></td>
+      
+        <td><%= f.text_field :last_name_kana %></td>
+        <td><%= f.label :first_name_kana, "メイ" %></td>
+        <td><%= f.text_field :first_name_kana %></td>
+      </tr>
+      <tr>
+        <th>郵便番号(ハイフンなし)</th>
+        <td><%= f.text_field :post_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <th>電話番号(ハイフンなし)</th>
+        <td><%= f.text_field :telephone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+        <th>学年</th>
+        <td><%= f.select :grade, [["小5", 1], ["小6", 2], ["中1", 3], ["中2", 4], ["中3", 5]], include_blank: "選択して下さい" %></td>
+      </tr>
+      <tr>
+        <th>お通いの学校名</th>
+        <td><%= f.text_field :school_name %></td>
+      </tr>
+      <tr>
+        <th>お近くの教室名</th>
+        <td></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "お申込み" %></td>
+      </tr>
+    </table>
+    
+  <% end %>
+</div>

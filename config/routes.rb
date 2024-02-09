@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
+
+  devise_for :admin,skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
+
   namespace :admin do
-    get 'subscriptions/index'
+    get "/" => "homes#top"
+    get resources :students, only: [:index, :show, :edit, :update]
+    get resources :targets
+    get resources :subscriptions, only: [:index, :update]
   end
-  get 'subscriptions/new'
-  get 'applications/new'
-  namespace :admin do
-    get 'applications/index'
-  end
-  namespace :admin do
-    get 'targets/show'
-    get 'targets/edit'
-    get 'targets/index'
-  end
-  devise_for :admins
+
+    get resources :subscriptions, only: [:new, :create]
+    get "subscriptions/thanks"=> "subscrptions#thanks"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

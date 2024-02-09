@@ -1,5 +1,5 @@
 <div class>
-  <h2>お申込み一覧</h2>
+  <h2>生徒一覧</h2>
   
   <table class>
     <tr>
@@ -7,9 +7,9 @@
       <th>生徒ID</th>
       <th>生徒名</th>
       <th>生徒区分</th>
-      <th>継続状況</th>
+      <th>生徒状況</th>
     </tr>
-    <% @trial_sutdents each do |student| %>
+    <% @internal_students each do |student| %>
       <tr>
         <td><%= student.grade %></td>
         <td><%= student.id %></td>
@@ -19,5 +19,4 @@
       </tr>
     <% end %>
   </table>
-    
 </div>

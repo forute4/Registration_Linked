@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2024_02_07_051338) do
 
   create_table "telephone_numbers", force: :cascade do |t|
     t.integer "student_id", null: false
-    t.string "telepthone_number", null: false
+    t.string "number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["student_id"], name: "index_telephone_numbers_on_student_id"
