@@ -35,7 +35,7 @@
       </tr>
       <tr>
         <th>学年</th>
-        <td><%= f.select :grade, , include_blank: "選択して下さい" %></td>
+        <td><%= f.select :grade, Student.grades_i18n.invert, include_blank: "選択して下さい" %></td>
       </tr>
       <tr>
         <th>お通いの学校名</th>

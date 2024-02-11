@@ -1,2 +1,27 @@
-<h1>Admin::Targets#edit</h1>
-<p>Find me in app/views/admin/targets/edit.html.erb</p>
+<div>
+  <h1>目標数値</h1>
+  
+  <h2>期間</h2>
+  <table class>
+    <tr>
+      <th>開始日</th>
+      <th>終了日</th>
+    </tr>
+    <tr>
+      <td><%= date_field_tag 'target_number[start_day]', nil %></td>
+      <td><%= date_field_tag 'target_number[finish_day]', nil %></td>
+    </tr>
+  </table>
+  
+  <table class>
+    <tr>
+      <th>申込</th>
+      <th>入塾</th>
+    </tr>
+    <tr>
+      <td><%= %>件</td>
+      <td>%= %>件</td>
+    </tr>
+  </table>
+  
+</div>

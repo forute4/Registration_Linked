@@ -12,8 +12,8 @@
     <% @internal_students each do |student| %>
       <tr>
         <td><%= student.grade %></td>
-        <td><%= student.id %></td>
-        <td><%= student.last_name %><%= student.first_name %></td>
+        <td><%= link_to student.id, admin_student_path(student.id) %></td>
+        <td><%= link_to student.full_name, admin_student_path(student.id) %></td>
         <td><%= student.student_status %></td>
         <td><%= student.situation_status %></td>
       </tr>
