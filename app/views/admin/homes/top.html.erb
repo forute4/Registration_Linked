@@ -1,0 +1,36 @@
+<p>topページ</p>
+
+<div class>
+  <div>
+    <h2><新規申込></h2>
+    <h4><%=  %>件</h4>
+    <%= link_to "申込一覧", admin_subscriptions_path %>
+  </div>
+
+  <div>
+    <h2>数値目標</h2>
+    <h4><%= %>%</h4>
+    <%= link_to "目標数値一覧", admin_targets_path %>
+  </div>
+
+  <div>
+    <h1>生徒管理</h1>
+
+    <% %>
+      <table class>
+        <tr>
+          <th>生徒ID</th>
+          <th>生徒名</th>
+          <th>コメント</th>
+        </tr>
+
+        <tr>
+          <td><%= @student.id %></td>
+          <td><%= @student.last_name %><%= astudent.first_name %></td>
+          <td><%= %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+</div>

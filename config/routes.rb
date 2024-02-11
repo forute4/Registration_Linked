@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
     get resources :subscriptions, only: [:new, :create]
-    get "subscriptions/thanks"=> "subscrptions#thanks"
+    get "subscriptions/thanks"=> "subscriptions#thanks"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

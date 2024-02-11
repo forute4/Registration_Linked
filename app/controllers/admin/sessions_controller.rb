@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  before_action :authenticate_admin!
+
+  before_action :configure_sign_in_params, only: [:create]
+  
+  def after_sign_in_path_for(resorce)
+    admin_path
+  end
+  
+  def after_sign_out_path_for(resorce)
+    destroy_admin_session_path
+  end
+  
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:encrypted_password, :admin_id])
+  # end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -21,7 +36,12 @@ class Admin::SessionsController < Devise::SessionsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:admin_id])
+  end
+  
+  private
+  def session_params
+    params.require(:admin).permit(:admin_id, :password)
+  end
 end
