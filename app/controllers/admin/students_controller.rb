@@ -2,7 +2,7 @@ class Admin::StudentsController < ApplicationController
 
   def index
     @students= Student.all
-    @internal_students= Student.where(student_status:2)
+    @internal_students= Student.where(student_status:internal_student)
   end
 
   def show
@@ -10,9 +10,9 @@ class Admin::StudentsController < ApplicationController
     @telephone= @student.telehone_number
     @comments= @student.comment
     @test= @student.test
-    @regular_test= @test.where(test_status:1)
-    @practice_exam= @test.where(test_status:2)
-    @confidential_report= @test.where(test_status:3)
+    @regular_test= @test.where(test_status:regular_test)
+    @practice_exam= @test.where(test_status:paractice_exam)
+    @confidential_report= @test.where(test_status:confidential_report)
   end
 
   def edit

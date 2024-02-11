@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2024_02_07_051338) do
     t.integer "grade", null: false
     t.string "school_name", null: false
     t.date "subscription_day", null: false
-    t.integer "student_status"
-    t.integer "situation_status"
+    t.integer "student_status", default: 1
+    t.integer "situation_status", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

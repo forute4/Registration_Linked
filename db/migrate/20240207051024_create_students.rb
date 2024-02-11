@@ -11,8 +11,8 @@ class CreateStudents < ActiveRecord::Migration[6.1]
       t.integer :grade, null: false
       t.string :school_name, null: false
       t.date :subscription_day, null: false
-      t.integer :student_status
-      t.integer :situation_status
+      t.integer :student_status, default: 1
+      t.integer :situation_status, default: 1
 
       t.timestamps
     end
