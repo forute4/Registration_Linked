@@ -1,0 +1,124 @@
+<div class>
+  <h1>生徒情報編集</h1>
+  
+  <%= form_with model: @student, url: admin_student_path(@student), method: :patch do |f| %>
+  
+  
+  <%= f.submit "更新" %>
+  
+  <table class>
+    <tr>
+      <th>生徒ID</th>
+      <td><%= @student.id %></td>
+      <th>学年</th>
+      <td><%= f.select :grade, Student.grades_i18n.invert %></td>
+      <th>生徒区分</th>
+      <td><%= f.select :student_status, Student.grades_i18n.invert %></td>
+    </tr>
+    <tr>
+      <th>生徒名</th>
+      <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
+      <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
+    </tr>
+    <tr>
+      <th>学校</th>
+      <td><%= f.text_field :school_name %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+        <td><%= f.text_field :number %></td>
+    </tr>
+    <tr>
+      <th>郵便番号・住所</th>
+      <td><%= f.text_field :post_code %></td>
+      <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+      <th>生徒状況</th>
+      <td><%= f.select :situation_status, Student.grades_i18n.invert %></td>
+    </tr>
+    <% end %>
+    
+    <tr>
+      <th>コメント</th>
+      <% @comments each do |comment| %>
+        <td><%= comment.comment %></td>
+      <% end %>
+      <%= form_with model:@comment, url: admin_comment_index_path, method: :post do |f| %>
+        <td><%= f.text_field :comment %></td>
+      <% end %>
+    </tr>
+  </table>
+  <%= form_with model: @test_edit, url: admin_test_path, method: :patch do |f| %>
+  <h3>定期テスト</h3>
+  <tbale class>
+    <tr>
+      <th></th>
+      <th>英語</th>
+      <th>数学</th>
+      <th>国語</th>
+      <th>理科</th>
+      <th>社会</th>
+    </tr>
+    <tr>
+      <td><%= @regular_test.test_neme %></td>
+      <td><%= @regular_test.english_score %></td>
+      <td><%= @regular_test.math_score %></td>
+      <td><%= @regular_test.japanese_score %></td>
+      <td><%= @regular_test.science_score %></td>
+      <td><%= @regular_test.social_score %></td>
+    </tr>
+  </tbale>
+  
+  <h3>内申</h3>
+  <tbale class>
+    <tr>
+      <th></th>
+      <th>英語</th>
+      <th>数学</th>
+      <th>国語</th>
+      <th>理科</th>
+      <th>社会</th>
+    </tr>
+    <tr>
+      <td><%= @practice_exam.test_name %></td>
+      <td><%= @practice_exam.english_score %></td>
+      <td><%= @practice_exam.math_score %></td>
+      <td><%= @confidential_report.japanese_score %></td>
+      <td><%= @practice_exam.science_score %></td>
+      <td><%= @practice_exam.social_score %></td>
+    </tr>
+  </tbale>
+  
+  <h3>模擬試験</h3>
+  <tbale class>
+    <tr>
+      <th></th>
+      <th>英語</th>
+      <th>数学</th>
+      <th>国語</th>
+      <th>理科</th>
+      <th>社会</th>
+    </tr>
+    <tr>
+      <td><%= @confidential_report.test_name %></td>
+      <td><%= @confidential_report.english_score %></td>
+      <td><%= @confidential_report.math_score %></td>
+      <td><%= @confidential_report.japanese_score %></td>
+      <td><%= @confidential_report.science_score %></td>
+      <td><%= @confidential_report.social_score %></td>
+    </tr>
+  </tbale>
+  <% end %>
+  
+  <%= form_with model: @test_new, url: admin_test_index_path, mehod: :post do |f| %>
+    <table class>
+      
+    </table>
+  <% end %>
+  
+</div>

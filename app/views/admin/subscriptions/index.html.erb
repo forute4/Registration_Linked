@@ -1,6 +1,6 @@
 <div class>
   <h2>お申込み一覧</h2>
-  
+
   <table class>
     <tr>
       <th>学年</th>
@@ -9,15 +9,15 @@
       <th>生徒区分</th>
       <th>継続状況</th>
     </tr>
-    <% @trial_sutdents each do |student| %>
+    <% @trial_sutdents.each do |student| %>
       <tr>
-        <td><%= student.grade %></td>
+        <td><%= student.grade_i18n %></td>
         <td><%= student.id %></td>
         <td><%= link_to student.full_name, admin_student_path(student.id) %></td>
-        <td><%= student.student_status %></td>
+        <td><%= student.student_status_i18n %></td>
         <td><%= student.situation_status %></td>
       </tr>
     <% end %>
   </table>
-    
+
 </div>

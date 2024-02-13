@@ -11,10 +11,10 @@
     </tr>
     <% @internal_students each do |student| %>
       <tr>
-        <td><%= student.grade %></td>
+        <td><%= student.grade_i18n %></td>
         <td><%= link_to student.id, admin_student_path(student.id) %></td>
         <td><%= link_to student.full_name, admin_student_path(student.id) %></td>
-        <td><%= student.student_status %></td>
+        <td><%= student.student_status_i18n %></td>
         <td><%= student.situation_status %></td>
       </tr>
     <% end %>
