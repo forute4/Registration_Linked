@@ -5,9 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Creating an admin user with sample data
+# Admin.create!(
+#  email: 'admin@example.com',
+#  password: 'testtest', # Note: This is just for illustration, use secure password hashing in production
+#  name: 'Admin User',
+#  admin_id: 999
+# )
+
 Admin.create!(
-   email: 'aaa@aaa',
-   admin_id: '111',
-   password: 'testtest',
-   name: 'test1'
+   email: 'aa@aaa',
+   password: 'test111',
+   name: '00001'
 )
+
+# You can add more admin users if needed by duplicating the above line with different data.
+
+# Run this seed file using the following command:
+# rails db:seed

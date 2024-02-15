@@ -7,7 +7,6 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :name, null: false
-      t.integer :admin_id, null: false
 
       ## Recoverable
       t.string   :reset_password_token
@@ -39,7 +38,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
     end
 
     add_index :admins, :email,                unique: true
-    add_index :admins, :admin_id,             unique: true
+    add_index :admins, :name,                 unique: true
     add_index :admins, :reset_password_token, unique: true
     # add_index :admins, :confirmation_token,   unique: true
     # add_index :admins, :unlock_token,         unique: true

@@ -23,24 +23,40 @@ class MakeStudentForm
     false
   end
 
-  def update_student
+  def update_student(student)
     ActiveRecord::Base.transaction do
-      Student.update(last_name:, first_name:, last_name_kana:, first_name_kana:,
-                     post_code:, address:, email:, grade:, school_name:, student_status:, situation_status:)
-      TelephoneNumber.update(number:)
+      Student.update(
+        last_name: last_name, first_name: first_name,
+        last_name_kana: last_name_kana, first_name_kana: first_name_kana,
+        post_code: post_code, address: address, email: email,
+        grade: grade, school_name: school_name,
+        student_status: student_status, situation_status: situation_status
+      )
+      TelephoneNumber.update(number: number)
     end
   rescue ActiveRecord::RecordInvalid
     false
   end
 
+
+  # def update_student
+  #   ActiveRecord::Base.transaction do
+  #     Student.update(last_name:, first_name:, last_name_kana:, first_name_kana:,
+  #                   post_code:, address:, email:, grade:, school_name:, student_status:, situation_status:)
+  #     TelephoneNumber.update(number:)
+  #   end
+  # rescue ActiveRecord::RecordInvalid
+  #   false
+  # end
+
   private
-  
-  
+
+
   def default_student_status
     1
   end
-  
-  
+
+
   def default_situation_status
     1
   end

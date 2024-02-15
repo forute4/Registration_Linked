@@ -26,13 +26,13 @@
     </tr>
     <tr>
       <th>電話番号</th>
-      <%# @telephone each do |telephone| %>
-        <td><%#= telephone.number %></td>
-      <%# end %>
+      <% @telephones.each do |telephone| %>
+        <td><%= telephone.number %></td>
+      <% end %>
     </tr>
     <tr>
       <th>郵便番号・住所</th>
-      <td><%= @student.post_code %></td>
+      <td>〒<%= @student.post_code %></td>
       <td><%= @student.address %></td>
     </tr>
     <tr>
@@ -48,6 +48,7 @@
   </table>
 
   <h3>定期テスト</h3>
+
   <tbale class>
     <tr>
       <th></th>
@@ -58,14 +59,16 @@
       <th>社会</th>
     </tr>
     <% if @regular_test.present? %>
-      <tr>
-        <td><%= @regular_test.test_name %></td>
-        <td><%= @regular_test.english_score %></td>
-        <td><%= @regular_test.math_score %></td>
-        <td><%= @regular_test.japanese_score %></td>
-        <td><%= @regular_test.science_score %></td>
-        <td><%= @regular_test.social_score %></td>
-      </tr>
+      <% @regular_test.each do |regular_test| %>
+        <tr>
+          <td><%= regular_test.test_name %></td>
+          <td><%= regular_test.english_score %></td>
+          <td><%= regular_test.math_score %></td>
+          <td><%= regular_test.japanese_score %></td>
+          <td><%= regular_test.science_score %></td>
+          <td><%= regular_test.social_score %></td>
+        </tr>
+      <% end %>
     <% else %>
       <tr>
         <td></td>
@@ -89,14 +92,16 @@
       <th>社会</th>
     </tr>
     <% if @practice_exam.present? %>
-      <tr>
-        <td><%= @practice_exam.test_name %></td>
-        <td><%= @practice_exam.english_score %></td>
-        <td><%= @practice_exam.math_score %></td>
-        <td><%= @confidential_report.japanese_score %></td>
-        <td><%= @practice_exam.science_score %></td>
-        <td><%= @practice_exam.social_score %></td>
-      </tr>
+      <% @practice_exam.each do |practice_exam| %>
+        <tr>
+          <td><%= practice_exam.test_name %></td>
+          <td><%= practice_exam.english_score %></td>
+          <td><%= practice_exam.math_score %></td>
+          <td><%= practice_exam.japanese_score %></td>
+          <td><%= practice_exam.science_score %></td>
+          <td><%= practice_exam.social_score %></td>
+        </tr>
+      <% end %>
     <% else %>
       <tr>
         <td></td>
@@ -120,14 +125,16 @@
       <th>社会</th>
     </tr>
     <% if @confidential_report.present? %>
-      <tr>
-        <td><%= @confidential_report.test_name %></td>
-        <td><%= @confidential_report.english_score %></td>
-        <td><%= @confidential_report.math_score %></td>
-        <td><%= @confidential_report.japanese_score %></td>
-        <td><%= @confidential_report.science_score %></td>
-        <td><%= @confidential_report.social_score %></td>
-      </tr>
+      <% @confidential_report.each do |confidential_report| %>
+        <tr>
+          <td><%= confidential_report.test_name %></td>
+          <td><%= confidential_report.english_score %></td>
+          <td><%= confidential_report.math_score %></td>
+          <td><%= confidential_report.japanese_score %></td>
+          <td><%= confidential_report.science_score %></td>
+          <td><%= confidential_report.social_score %></td>
+        </tr>
+      <% end %>
     <% else %>
       <tr>
         <td></td>
