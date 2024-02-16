@@ -1,2 +1,3 @@
 class TargetNumber < ApplicationRecord
+  
 end

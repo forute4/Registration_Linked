@@ -27,6 +27,7 @@ class Admin::StudentsController < ApplicationController
     @comments= @student.comments
     @comment_new= Comment.new
     @test_new= Test.new
+    @tests= @student.tests
     if @tests.present?
       @regular_test= @tests.where(test_status: 1)
       @practice_exam= @tests.where(test_status: 2)

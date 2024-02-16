@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2024_02_07_051338) do
   end
 
   create_table "target_numbers", force: :cascade do |t|
+    t.string "target_name"
     t.date "start_day"
     t.date "finish_day"
     t.integer "subscription_number"

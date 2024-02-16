@@ -1,7 +1,7 @@
 <div class>
   <h1>目標数値</h1>
-  <h1>申込<%= %>件</h1>
-  <h1>入塾<%= %>件</h1>
+  <h1>申込<%= @target.subscription_number %>件</h1>
+  <h1>入塾<%= @target.continue_number %>件</h1>
   
   <table class>
     <tr>
@@ -11,41 +11,36 @@
     </tr>
     <tr>
       <th>達成率</th>
-      <td></td>
+      <td><%= {(@subscription_count / @target.subscription_number) * 100}.floor(0).to_f %>%</td>
       <td></td>
     </tr>
     <tr>
       <th>申込件数</th>
-      <td></td>
+      <td><%= @subscription_count %>件</td>
       <td></td>
     </tr>
     <tr>
       <th>達成まで</th>
-      <td></td>
+      <td><%= @target.subscription_number - @subscription_count %></td>
       <td></td>
     </tr>
     <tr>
       <th>入塾率</th>
       <td></td>
-      <td></td>
+      <td><%= {(@internal_count / @target.subscription_number)*100}.floor(0).to_f %>%</td>
     </tr>
     <tr>
       <th>入塾件数</th>
-      <td></td>
+      <td><%= @internal_count %></td>
       <td></td>
     </tr>
     <tr>
       <th>達成まで</th>
-      <td></td>
+      <td><%= @target.continue_number - @internal_count %></td>
       <td></td>
     </tr>
     <tr>
       <th>退塾数</th>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>退塾率</th>
       <td></td>
       <td></td>
     </tr>

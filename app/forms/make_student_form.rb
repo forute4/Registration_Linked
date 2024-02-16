@@ -13,6 +13,7 @@ class MakeStudentForm
     super(attributes)
   end
 
+
   def save
     ActiveRecord::Base.transaction do
       student = Student.create(last_name:, first_name:, last_name_kana:, first_name_kana:, subscription_day:,

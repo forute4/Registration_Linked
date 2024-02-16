@@ -1,0 +1,27 @@
+<div class>
+  <div>
+    <h1>目標数値設定</h1>
+  </div>
+  <div>
+    <%= form_with model: @target, url: admin_target_path(@target), method: :patch do |f| %>
+    
+      <p>目標区間名</p>
+      <%= f.text_field :target_name %>
+      
+      <p>目標期間</p>
+        <p>開始日</p>
+        <%= f.date_select :start_day, {}, class: 'form-control' %>
+        
+        <p>終了日</p>
+        <%= f.date_select :finish_day, {}, class: 'form-control' %>
+      
+      <p>目標申込数</p>
+      <%= f.text_field :subscription_number %>
+      
+      <p>目標入塾数</p>
+      <%= f.text_field :continue_number %>
+      
+      <%= f.submit "登録" %>
+    <% end %>
+  </div>
+</div>
