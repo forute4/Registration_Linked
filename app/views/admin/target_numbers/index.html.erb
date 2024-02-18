@@ -3,8 +3,7 @@
     <h1>目標数値一覧</h1>
   </div>
   <div class>
-    <%= link_to "目標詳細", admin_targe_path(@targets.id) %>
-    <%= link_to "目標数値設定", new_admin_targe_path %>
+    <%= link_to "目標数値設定", new_admin_target_number_path %>
   </div>
   <div>
     <table class>
@@ -13,13 +12,13 @@
         <th>目標申込数</th>
         <th>目標入塾数</th>
       </tr>
-      <%= @targets each do |target| %>
+      <%= @targets.each do |target| %>
         <tr>
-          <td><%= target.name %></td>
+          <td><%= link_to target.name, admin_target_number_path(target.id) %></td>
           <td><%= target.subscription_number %></td>
           <td><%= target.continue_number %></td>
         </tr>
-        <% end %>
+      <% end %>
     </table>
   </div>
 </div>

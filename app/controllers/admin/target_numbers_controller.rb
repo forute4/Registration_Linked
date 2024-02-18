@@ -1,9 +1,9 @@
 class Admin::TargetNumbersController < ApplicationController
-  
+
   def new
     @target= TargetNumber.new
   end
-  
+
   def create
     @target= TargetNumber.new
    if @target.save
@@ -14,7 +14,7 @@ class Admin::TargetNumbersController < ApplicationController
      render :index
    end
   end
-  
+
   def show
     @target= TargetNumber.find(params[:id])
     start_date= @target.start_day
@@ -28,13 +28,13 @@ class Admin::TargetNumbersController < ApplicationController
   def edit
     @target= TargetNumber.find(params[:id])
   end
-  
+
   def update
     @target= TargetNumber.find(params[:id])
     @target.update(target_params)
     if @target.save
       flash[:notice] ="目標が変更されました"
-      redirect_to admin_target_path(@target.id)
+      redirect_to admin_target_path(@target)
     else
       flash[:alert] ="エラー"
       render :target
@@ -42,13 +42,13 @@ class Admin::TargetNumbersController < ApplicationController
   end
 
   def index
-    @targets= Target.all
+    @targets= TargetNumber.all
   end
-  
+
   private
-  
-  def target_params
-    params.require(:target_number).permit(:target_name, :start_day, :finish_day, :subscription_number, :continue_number)
-  end
-  
+
+    def target_params
+      params.require(:target_number).permit(:target_name, :start_day, :finish_day, :subscription_number, :continue_number)
+    end
+
 end

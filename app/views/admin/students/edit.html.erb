@@ -1,12 +1,13 @@
 <div class>
   <h1>生徒情報編集</h1>
 
-  <%= form_with model: @student_form, url: admin_student_path(@student), method: :patch do |f| %>
+  <%= form_with model: @student, url: admin_student_path(@student), method: :patch do |f| %>
     <%= csrf_meta_tags %>
 
   <%= f.submit "更新" %>
 
   <table class>
+
     <tr>
       <th>生徒ID</th>
       <td><%= @student.id %></td>
@@ -30,9 +31,7 @@
     </tr>
     <tr>
       <th>電話番号</th>
-      <%# @telephones.each do |telephone| %>
-        <td><%=f.text_field :number %></td>
-      <%# end %>
+      <td><%= f.text_field :telephone_number %></td>
     </tr>
     <tr>
       <th>郵便番号・住所</th>
@@ -43,8 +42,9 @@
       <th>生徒状況</th>
       <td><%= f.select :situation_status, Student.situation_statuses_i18n.invert %></td>
     </tr>
+      </table class>
     <% end %>
-
+  <table class>
     <tr>
       <th>コメント</th>
       <% @comments.each do |comment| %>
@@ -71,16 +71,22 @@
       <th>国語</th>
       <th>理科</th>
       <th>社会</th>
+      <th></th>
+      <th></th>
     </tr>
     <% if @regular_test.present? %>
       <% @regular_test.each do |regular_test| %>
         <tr>
-          <td><%= regular_test.test_name %></td>
-          <td><%= regular_test.english_score %></td>
-          <td><%= regular_test.math_score %></td>
-          <td><%= regular_test.japanese_score %></td>
-          <td><%= regular_test.science_score %></td>
-          <td><%= regular_test.social_score %></td>
+          <%= form_with model: regular_test, url: admin_student_test_path(@student), method: :patch  do |f| %>
+            <td><%= f.text_field :test_name %></td>
+            <td><%= f.text_field :english_score %></td>
+            <td><%= f.text_field :math_score %></td>
+            <td><%= f.text_field :japanese_score %></td>
+            <td><%= f.text_field :science_score %></td>
+            <td><%= f.text_field :social_score %></td>
+            <td><%= f.select :test_status, Test.test_statuses_i18n.invert %></td>
+            <td><%= f.submit "更新" %></td>
+          <% end %>
         </tr>
       <% end %>
     <% else %>
@@ -184,7 +190,7 @@
       </tr>
       <tr>
         <td><%= f.submit "登録" %></td>
-        <% end %>
+      <% end %>
       </tr>
     </table>
 

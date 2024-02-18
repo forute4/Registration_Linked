@@ -3,25 +3,25 @@
     <h1>目標数値設定</h1>
   </div>
   <div>
-    <%= form_with model: @target, url: admin_targets_path, method: :post do |f| %>
-    
+    <%= form_with model: @target, url: admin_target_numbers_path, method: :post do |f| %>
+
       <p>目標区間名</p>
       <%= f.text_field :target_name %>
-      
+
       <p>目標期間</p>
         <p>開始日</p>
         <%= f.date_select :start_day, {}, class: 'form-control' %>
-        
+
         <p>終了日</p>
         <%= f.date_select :finish_day, {}, class: 'form-control' %>
-      
+
       <p>目標申込数</p>
-      <%= f.text_field :subscription_number %>
-      
+      <%= f.text_field :subscription_number %>件
+
       <p>目標入塾数</p>
       <%= f.text_field :subscription_number %>
-      
-      <%= f.submit "登録" %>
+
+      <%= f.submit "登録" %>件
     <% end %>
   </div>
 </div>

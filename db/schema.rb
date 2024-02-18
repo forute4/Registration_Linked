@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2024_02_07_051338) do
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
+    t.string "telephone_number", null: false
     t.string "address", null: false
     t.string "email", null: false
     t.string "post_code", null: false
@@ -63,14 +64,6 @@ ActiveRecord::Schema.define(version: 2024_02_07_051338) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "telephone_numbers", force: :cascade do |t|
-    t.integer "student_id", null: false
-    t.string "number", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["student_id"], name: "index_telephone_numbers_on_student_id"
-  end
-
   create_table "tests", force: :cascade do |t|
     t.integer "student_id", null: false
     t.integer "test_status"
@@ -87,6 +80,5 @@ ActiveRecord::Schema.define(version: 2024_02_07_051338) do
 
   add_foreign_key "comments", "admins"
   add_foreign_key "comments", "students"
-  add_foreign_key "telephone_numbers", "students"
   add_foreign_key "tests", "students"
 end
