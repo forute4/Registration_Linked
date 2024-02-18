@@ -12,9 +12,9 @@
         <th>目標申込数</th>
         <th>目標入塾数</th>
       </tr>
-      <%= @targets.each do |target| %>
+      <% @targets.each do |target| %>
         <tr>
-          <td><%= link_to target.name, admin_target_number_path(target.id) %></td>
+          <td><%= link_to target.target_name, admin_target_number_path(target.id) %></td>
           <td><%= target.subscription_number %></td>
           <td><%= target.continue_number %></td>
         </tr>

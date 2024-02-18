@@ -3,7 +3,14 @@ class Admin::StudentsController < ApplicationController
 
   def index
     @students= Student.all
-    @internal_students= Student.where(student_status: 2)
+    @internal_students= Student.where(student_status: [1,2])
+    @grades = @internal_students.grades.keys
+    @selected_grade = params[:grade]
+    if @selected_grade.present?
+      @selected_students = @internal_students.where(grade: @selected_grade)
+    else
+      @selected_students = @internal_students
+    end
   end
 
   def show

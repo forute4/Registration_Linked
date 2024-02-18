@@ -8,8 +8,6 @@ class Admin::HomesController < ApplicationController
     #@new_comment= Comment.where("created_at >= ?", Date.today).includes(:student).where(student: {situation_status: 3})
     comments = Comment.includes(:student).where("created_at >= ?", Date.today)
     @new_comments = comments.filter_map { |comment| comment.student.situation_status == 3}
-
     @today_subscriptions= Student.subscription_today
   end
-  
 end

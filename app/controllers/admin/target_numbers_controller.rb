@@ -5,10 +5,10 @@ class Admin::TargetNumbersController < ApplicationController
   end
 
   def create
-    @target= TargetNumber.new
+    @target= TargetNumber.new(target_params)
    if @target.save
      flash[:notice] ="目標が設定されました"
-     redirect_to admin_target_path(@target.id)
+     redirect_to admin_target_number_path(@target.id)
    else
      flash[:alert] ="エラー "
      render :index
@@ -21,8 +21,8 @@ class Admin::TargetNumbersController < ApplicationController
     finish_date= @target.finish_day
     subscriptions_in_range= Student.where(subscription_day: start_date..finish_date)
     @subscription_count= subscriptions_in_range.count
-    internal_in_range=Student.where(subscription_day: start_date..finish_date).where(student_status: 2)
-    @internal_count= internal_in_range.count
+    continue_in_range=Student.where(subscription_day: start_date..finish_date).where(student_status: 2)
+    @continue_count= continue_in_range.count
   end
 
   def edit
@@ -34,7 +34,7 @@ class Admin::TargetNumbersController < ApplicationController
     @target.update(target_params)
     if @target.save
       flash[:notice] ="目標が変更されました"
-      redirect_to admin_target_path(@target)
+      redirect_to admin_target_number_path(@target)
     else
       flash[:alert] ="エラー"
       render :target
