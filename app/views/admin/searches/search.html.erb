@@ -1,0 +1,24 @@
+<h2>生徒検索結果</h2>
+
+<% if @students.blank? %>
+  <p class="no-results">検索結果はありません。</p>
+<% else %>
+  <table class>
+  <tr>
+    <th>学年</th>
+    <th>生徒ID</th>
+    <th>生徒名</th>
+    <th>生徒区分</th>
+    <th>生徒状況</th>
+  </tr>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.grade_i18n %></td>
+      <td><%= link_to student.id, admin_student_path(student.id) %></td>
+      <td><%= link_to student.full_name, admin_student_path(student.id) %></td>
+      <td><%= student.student_status_i18n %></td>
+      <td><%= student.situation_status %></td>
+    </tr>
+  <% end %>
+</table>
+<% end %>

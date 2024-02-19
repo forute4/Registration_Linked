@@ -49,6 +49,8 @@ class Admin::StudentsController < ApplicationController
       render :edit
     end
   end
+  
+  
 
   private
 

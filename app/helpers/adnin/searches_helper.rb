@@ -1,0 +1,2 @@
+module Adnin::SearchesHelper
+end

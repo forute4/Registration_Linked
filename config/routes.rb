@@ -13,12 +13,11 @@ Rails.application.routes.draw do
       end
      resources :target_numbers
      resources :subscriptions, only: [:index, :update]
-
+     get "search" => "searches#search"
   end
 
      resources :subscriptions, only: [:new, :create]
     get "subscriptions/thanks"=> "subscriptions#thanks"
-    get "search" => "searches#search"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
