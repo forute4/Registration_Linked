@@ -1,3 +1,11 @@
+<% if @student.errors.any? %>
+  <%= @student.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @student.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <div class>
   <%= form_with model: @student, url: subscriptions_path, method: :post do |f| %>

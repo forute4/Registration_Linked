@@ -11,7 +11,7 @@ class Admin::TargetNumbersController < ApplicationController
      redirect_to admin_target_number_path(@target.id)
    else
      flash[:alert] ="エラー "
-     render :index
+     render :new
    end
   end
 

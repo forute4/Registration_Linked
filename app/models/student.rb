@@ -2,6 +2,16 @@ class Student < ApplicationRecord
   has_many :comments
   has_many :tests
 
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :telephone_number, presence: true
+  validates :address, presence: true
+  validates :email, presence: true
+  validates :post_code, presence: true
+  validates :school_name, presence: true
+
   scope :subscription_today, -> { where(subscription_day: Time.zone.now.all_day) }
 
   enum student_status: {trial_student: 1, internal_student: 2, leaving_student: 3}

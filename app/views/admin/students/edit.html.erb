@@ -1,3 +1,12 @@
+<% if @student.errors.any? %>
+  <%= @student.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @student.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class>
   <h1>生徒情報編集</h1>
 
@@ -44,6 +53,15 @@
     </tr>
       </table class>
     <% end %>
+
+  <% if @comment_new.errors.any? %>
+  <%= @comment_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @comment_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
   <table class>
     <tr>
       <th>コメント</th>
@@ -61,7 +79,14 @@
     </tr>
   </table>
 
-
+  <% if @test_edit.errors.any? %>
+  <%= @test_edit.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @test_edit.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
   <h3>定期テスト</h3>
       <tbale class>
     <tr>
@@ -167,32 +192,39 @@
     <% end %>
   </tbale>
 
-
-    <table class>
-      <tr>
-        <th>テスト名</th>
-        <th>英語</th>
-        <th>数学</th>
-        <th>国語</th>
-        <th>理科</th>
-        <th>社会</th>
-        <th>テスト区分</th>
-      </tr>
-      <%= form_with model: @test_new, url: admin_student_tests_path(@student), mehod: :post do |f| %>
-      <tr>
-        <td><%= f.text_field :test_name %></td>
-        <td><%= f.text_field :english_score %></td>
-        <td><%= f.text_field :math_score %></td>
-        <td><%= f.text_field :japanese_score %></td>
-        <td><%= f.text_field :science_score %></td>
-        <td><%= f.text_field :social_score %></td>
-        <td><%= f.select :test_status, Test.test_statuses_i18n.invert, include_blank: "選択して下さい" %></td>
-      </tr>
-      <tr>
-        <td><%= f.submit "登録" %></td>
-      <% end %>
-      </tr>
-    </table>
+  <% if @test_new.errors.any? %>
+  <%= @test_new.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @test_new.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <table class>
+    <tr>
+      <th>テスト名</th>
+      <th>英語</th>
+      <th>数学</th>
+      <th>国語</th>
+      <th>理科</th>
+      <th>社会</th>
+      <th>テスト区分</th>
+    </tr>
+    <%= form_with model: @test_new, url: admin_student_tests_path(@student), mehod: :post do |f| %>
+    <tr>
+      <td><%= f.text_field :test_name %></td>
+      <td><%= f.text_field :english_score %></td>
+      <td><%= f.text_field :math_score %></td>
+      <td><%= f.text_field :japanese_score %></td>
+      <td><%= f.text_field :science_score %></td>
+      <td><%= f.text_field :social_score %></td>
+      <td><%= f.select :test_status, Test.test_statuses_i18n.invert, include_blank: "選択して下さい" %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "登録" %></td>
+    <% end %>
+    </tr>
+  </table>
 
 
 </div>

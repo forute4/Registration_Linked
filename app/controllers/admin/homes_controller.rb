@@ -1,5 +1,4 @@
 class Admin::HomesController < ApplicationController
-  
   def top
     # これだとstudentのデータを持ってきた後にその中のコメントのデータを持ってくるため細心のコメントが持ってこれているわけではない細心のコメントが持ってこれているわけではない
     # @danger_student= Studnet.where(situation_status:3)
