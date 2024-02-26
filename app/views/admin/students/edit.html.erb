@@ -1,120 +1,180 @@
-<% if @student.errors.any? %>
-  <%= @student.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @student.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 
-<div class>
-  <h1>生徒情報編集</h1>
+<div class = "container mt-4">
+  <% if @student.errors.any? %>
+    <%= @student.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+
+  <div class = "row">
+    <h1>生徒情報編集</h1>
+  </div>
+  <div class = "row">
+    <%= link_to "詳細画面に戻る", admin_student_path %>
+  </div>
 
   <%= form_with model: @student, url: admin_student_path(@student), method: :patch do |f| %>
     <%= csrf_meta_tags %>
 
-  <%= f.submit "更新" %>
+    <div class = "row mt-2">
+      <div class="col-md-12 text-right">
+        <%= f.submit "更新", class:"btn btn-success" %>
+      </div>
+    </div>
 
-  <table class>
-
-    <tr>
-      <th>生徒ID</th>
-      <td><%= @student.id %></td>
-      <th>学年</th>
-      <td><%= f.select :grade, Student.grades_i18n.invert %></td>
-      <th>生徒区分</th>
-      <td><%= f.select :student_status, Student.student_statuses_i18n.invert %></td>
-    </tr>
-    <tr>
-      <th>生徒名</th>
-      <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
-      <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
-    </tr>
-    <tr>
-      <th>学校</th>
-      <td><%= f.text_field :school_name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= f.text_field :telephone_number %></td>
-    </tr>
-    <tr>
-      <th>郵便番号・住所</th>
-      <td><%= f.text_field :post_code %></td>
-      <td><%= f.text_field :address %></td>
-    </tr>
-    <tr>
-      <th>生徒状況</th>
-      <td><%= f.select :situation_status, Student.situation_statuses_i18n.invert %></td>
-    </tr>
-      </table class>
-    <% end %>
-
-  <% if @comment_new.errors.any? %>
-  <%= @comment_new.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @comment_new.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+    <div class = "row mt-2">
+      <table class = "table">
+        <tr>
+          <th style= "background-color: #dee2e6;">生徒ID</th>
+          <td><%= @student.id %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">学年</th>
+          <td><%= f.select :grade, Student.grades_i18n.invert %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">生徒区分</th>
+          <td><%= f.select :student_status, Student.student_statuses_i18n.invert %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">生徒名</th>
+          <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
+          <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">学校</th>
+          <td><%= f.text_field :school_name %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">メールアドレス</th>
+          <td><%= f.text_field :email %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">電話番号</th>
+          <td><%= f.text_field :telephone_number %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">郵便番号・住所</th>
+          <td><%= f.text_field :post_code %></td>
+          <td><%= f.text_field :address, size: 50 %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th style= "background-color: #dee2e6;">生徒状況</th>
+          <td><%= f.select :situation_status, Student.situation_statuses_i18n.invert %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   <% end %>
-  </ul>
-<% end %>
-  <table class>
-    <tr>
-      <th>コメント</th>
-      <% @comments.each do |comment| %>
-        <td><%= comment.comment %></td>
-      <% end %>
-    </tr>
-    <tr>
-      <th></th>
-      <%= form_with(model: [@student, @comment_new],url: admin_student_comments_path(@student), local: true) do |f| %>
-      <%#= form_with model: @comment_new, url: admin_student_comments_path(@student), method: :post do |f| %>
-        <td><%= f.text_area :comment %></td>
-        <td><%= f.submit "投稿" %></td>
-      <% end %>
-    </tr>
-  </table>
 
-  <% if @test_edit.errors.any? %>
-  <%= @test_edit.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @test_edit.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+
+  <%= form_with(model: [@student, @comment_new],url: admin_student_comments_path(@student), local: true) do |f| %>
+    <div class = "row">
+      <h3>コメント</h3>
+    </div>
+    <% @comments.each do |comment| %>
+      <div class = "row">
+        <div class = "col-lg-1"></div>
+        ・<%= comment.comment %>
+      </div>
     <% end %>
-  </ul>
+    <div class = "row">
+      <div class = "col-lg-1"></div>
+      <div class = "col-lg-11">
+        <%= f.text_area :comment, class: 'form-control', rows: 5%>
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col-md-12 text-right">
+        <%= f.submit "投稿",class:"btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
-  <h3>定期テスト</h3>
-      <tbale class>
-    <tr>
-      <th></th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-      <th></th>
-      <th></th>
-    </tr>
+
+
+  <div class ="row mt-3">
+    <h3>定期テスト</h3>
+  </div>
+
+  <div class="row mt-1">
     <% if @regular_test.present? %>
-      <% @regular_test.each do |regular_test| %>
-        <tr>
-          <%= form_with model: regular_test, url: admin_student_test_path(@student), method: :patch  do |f| %>
-            <td><%= f.text_field :test_name %></td>
-            <td><%= f.text_field :english_score %></td>
-            <td><%= f.text_field :math_score %></td>
-            <td><%= f.text_field :japanese_score %></td>
-            <td><%= f.text_field :science_score %></td>
-            <td><%= f.text_field :social_score %></td>
-            <td><%= f.select :test_status, Test.test_statuses_i18n.invert %></td>
-            <td><%= f.submit "更新" %></td>
-          <% end %>
-        </tr>
+      <% @regular_test.each_with_index do |regular_test, i| %>
+        <%= form_with model: regular_test, url: admin_student_test_path(@student,regular_test), method: :patch  do |f| %>
+          <table class="table">
+            <% if i == 0 %>
+              <tr>
+                <th style="background-color: #dee2e6; text-align: center;">テスト名</th>
+                <th style="background-color: #dee2e6; text-align: center;">英語</th>
+                <th style="background-color: #dee2e6; text-align: center;">数学</th>
+                <th style="background-color: #dee2e6; text-align: center;">国語</th>
+                <th style="background-color: #dee2e6; text-align: center;">理科</th>
+                <th style="background-color: #dee2e6; text-align: center;">社会</th>
+                <th style="background-color: #dee2e6; text-align: center;">テスト区分</th>
+                <th style="background-color: #dee2e6; text-align: center;"></th>
+              </tr>
+            <% end %>
+            <tr>
+              <td><%= f.text_field :test_name %></td>
+              <td><%= f.text_field :english_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :math_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :japanese_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :science_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :social_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.select :test_status, Test.test_statuses_i18n.invert, class: 'text-center' %></td>
+              <td><%= f.submit "更新", class:"btn btn-success text-center" %></td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>
     <% else %>
+      <table class = "table">
+      <tr>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+        <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+        <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+        <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト区分</th>
+        <th style= "background-color: #dee2e6; text-align: center;"></th>
+      </tr>
       <tr>
         <td></td>
         <td></td>
@@ -123,31 +183,56 @@
         <td></td>
         <td></td>
       </tr>
+    </table>
     <% end %>
-  </tbale>
+  </div>
 
-  <h3>模擬試験</h3>
-  <tbale class>
-    <tr>
-      <th></th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-    </tr>
+  <div class ="row mt-3">
+    <h3>模擬試験</h3>
+  </div>
+
+  <div class = "row mt-1">
     <% if @practice_exam.present? %>
-      <% @practice_exam.each do |practice_exam| %>
-        <tr>
-          <td><%= practice_exam.test_name %></td>
-          <td><%= practice_exam.english_score %></td>
-          <td><%= practice_exam.math_score %></td>
-          <td><%= practice_exam.japanese_score %></td>
-          <td><%= practice_exam.science_score %></td>
-          <td><%= practice_exam.social_score %></td>
-        </tr>
+      <% @practice_exam.each_with_index do |practice_exam, i| %>
+        <%= form_with model: practice_exam, url: admin_student_test_path(@student,regular_test), method: :patch  do |f| %>
+          <table class = "table">
+            <% if i == 0 %>
+              <tr>
+                <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+                <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+                <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+                <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+                <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+                <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+                <th style= "background-color: #dee2e6; text-align: center;">テスト区分</th>
+                <th style= "background-color: #dee2e6; text-align: center;"></th>
+              </tr>
+            <% end %>
+            <tr>
+              <td><%= f.text_field :test_name %></td>
+              <td><%= f.text_field :english_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :math_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :japanese_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :science_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :social_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.select :test_status, Test.test_statuses_i18n.invert, class: 'text-center' %></td>
+              <td><%= f.submit "更新", class:"btn btn-success text-center" %></td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>
     <% else %>
+      <table class = "table">
+      <tr>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+        <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+        <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+        <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト区分</th>
+        <th style= "background-color: #dee2e6; text-align: center;"></th>
+      </tr>
       <tr>
         <td></td>
         <td></td>
@@ -156,31 +241,56 @@
         <td></td>
         <td></td>
       </tr>
+    </table>
     <% end %>
-  </tbale>
+  </div>
 
-  <h3>内申</h3>
-  <tbale class>
-    <tr>
-      <th></th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-    </tr>
+  <div class ="row mt-3">
+    <h3>内申</h3>
+  </div>
+
+  <div class = "row mt-1">
     <% if @confidential_report.present? %>
-      <% @confidential_report.each do |confidential_report| %>
-        <tr>
-          <td><%= confidential_report.test_name %></td>
-          <td><%= confidential_report.english_score %></td>
-          <td><%= confidential_report.math_score %></td>
-          <td><%= confidential_report.japanese_score %></td>
-          <td><%= confidential_report.science_score %></td>
-          <td><%= confidential_report.social_score %></td>
-        </tr>
+      <% @confidential_report.each_with_index do |confidential_report, i| %>
+        <%= form_with model: confidential_report, url: admin_student_test_path(@student,regular_test), method: :patch  do |f| %>
+          <table class = "table">
+            <% if i == 0 %>
+              <tr>
+                <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+                <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+                <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+                <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+                <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+                <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+                <th style= "background-color: #dee2e6; text-align: center;">テスト区分</th>
+                <th style= "background-color: #dee2e6; text-align: center;"></th>
+              </tr>
+            <% end %>
+            <tr>
+              <td><%= f.text_field :test_name %></td>
+              <td><%= f.text_field :english_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :math_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :japanese_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :science_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.text_field :social_score, size: 10, class: 'text-center' %></td>
+              <td><%= f.select :test_status, Test.test_statuses_i18n.invert, class: 'text-center' %></td>
+              <td><%= f.submit "更新", class:"btn btn-success text-center" %></td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>
     <% else %>
+      <table class = "table">
+      <tr>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+        <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+        <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+        <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト区分</th>
+        <th style= "background-color: #dee2e6; text-align: center;"></th>
+      </tr>
       <tr>
         <td></td>
         <td></td>
@@ -189,42 +299,39 @@
         <td></td>
         <td></td>
       </tr>
+    </table>
     <% end %>
-  </tbale>
+  </div>
 
-  <% if @test_new.errors.any? %>
-  <%= @test_new.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @test_new.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-  <% end %>
-  <table class>
-    <tr>
-      <th>テスト名</th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-      <th>テスト区分</th>
-    </tr>
+  <div class = "row">
+    <h2><テスト新規登録></h2>
+  </div>
+
+  <div class = "row">
     <%= form_with model: @test_new, url: admin_student_tests_path(@student), mehod: :post do |f| %>
-    <tr>
-      <td><%= f.text_field :test_name %></td>
-      <td><%= f.text_field :english_score %></td>
-      <td><%= f.text_field :math_score %></td>
-      <td><%= f.text_field :japanese_score %></td>
-      <td><%= f.text_field :science_score %></td>
-      <td><%= f.text_field :social_score %></td>
-      <td><%= f.select :test_status, Test.test_statuses_i18n.invert, include_blank: "選択して下さい" %></td>
-    </tr>
-    <tr>
-      <td><%= f.submit "登録" %></td>
+      <table class = "table">
+        <tr>
+          <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+          <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+          <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+          <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+          <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+          <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+          <th style= "background-color: #dee2e6; text-align: center;">テスト区分</th>
+          <th style= "background-color: #dee2e6; text-align: center;"></th>
+        </tr>
+        <tr>
+          <td><%= f.text_field :test_name %></td>
+          <td><%= f.text_field :english_score, size: 10, class: 'text-center' %></td>
+          <td><%= f.text_field :math_score, size: 10, class: 'text-center' %></td>
+          <td><%= f.text_field :japanese_score, size: 10, class: 'text-center' %></td>
+          <td><%= f.text_field :science_score, size: 10, class: 'text-center' %></td>
+          <td><%= f.text_field :social_score, size: 10, class: 'text-center' %></td>
+          <td><%= f.select :test_status, Test.test_statuses_i18n.invert, include_blank: "選択して下さい", class: 'text-center' %></td>
+          <td><%= f.submit "登録",class:"btn btn-primary text-center" %></td>
+        </tr>
+      </table>
     <% end %>
-    </tr>
-  </table>
-
+  </dvi>
 
 </div>

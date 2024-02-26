@@ -34,13 +34,12 @@ class Admin::TestsController < ApplicationController
   # end
   def create
     @test_new = @student.tests.build(test_params)
-  
+
     if @test_new.save
       redirect_to admin_student_path(@student), notice: 'テストが登録されました。'
     else
-      # もし保存に失敗した場合の処理を追加することも考えてください
       flash.now[:alert] = 'テストの登録に失敗しました。'
-      render 'admin_students/show' # または適切なビュー名を指定してください
+      render 'admin_students/edit'
     end
   end
 
@@ -50,7 +49,7 @@ class Admin::TestsController < ApplicationController
       redirect_to admin_student_path(@student)
     else
       # エラー処理が必要な場合に追加
-      render :edit
+      render 'admin_students/edit'
     end
   end
 

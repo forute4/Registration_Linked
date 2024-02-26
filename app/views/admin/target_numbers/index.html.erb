@@ -1,22 +1,23 @@
-<div class>
-  <div class>
+<div class = "container mt-4">
+  <div class = "row">
     <h1>目標数値一覧</h1>
   </div>
   <div class>
-    <%= link_to "目標数値設定", new_admin_target_number_path %>
+    <%= link_to "目標数値設定", new_admin_target_number_path, class:"btn btn-primary" %>
   </div>
-  <div>
-    <table class>
+  
+  <div class = "row mt-2">
+    <table class = "table">
       <tr>
-        <th>目標区間名</th>
-        <th>目標申込数</th>
-        <th>目標入塾数</th>
+        <th style= "background-color: #dee2e6;">目標区間名</th>
+        <th style= "background-color: #dee2e6;">目標申込数</th>
+        <th style= "background-color: #dee2e6;">目標入塾数</th>
       </tr>
       <% @targets.each do |target| %>
         <tr>
           <td><%= link_to target.target_name, admin_target_number_path(target.id) %></td>
-          <td><%= target.subscription_number %></td>
-          <td><%= target.continue_number %></td>
+          <td><%= target.subscription_number %>件</td>
+          <td><%= target.continue_number %>件</td>
         </tr>
       <% end %>
     </table>

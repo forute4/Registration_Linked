@@ -21,7 +21,7 @@ class Admin::TargetNumbersController < ApplicationController
     finish_date= @target.finish_day
     subscriptions_in_range= Student.where(subscription_day: start_date..finish_date)
     @subscription_count= subscriptions_in_range.count
-    continue_in_range=Student.where(subscription_day: start_date..finish_date).where(student_status: 2)
+    continue_in_range=Student.where(subscription_day: start_date..finish_date).internal_student
     @continue_count= continue_in_range.count
   end
 
@@ -37,7 +37,7 @@ class Admin::TargetNumbersController < ApplicationController
       redirect_to admin_target_number_path(@target)
     else
       flash[:alert] ="エラー"
-      render :target
+      render :edit
     end
   end
 

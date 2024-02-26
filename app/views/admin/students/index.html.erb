@@ -1,20 +1,24 @@
-<div class>
+<div class = "container mt-4">
 
   <h2>生徒一覧</h2>
 
-  <%= form_tag admin_students_path, method: :get do %>
-    <label for="grade">学年:</label>
-    <%= select_tag 'grade', options_for_select(Student.grades_i18n.invert, @selected_grade), include_blank: true %>
-    <%= submit_tag '絞り込み' %>
-  <% end %>
+  <div class = "row">
+    <div class = "col-3 offset-9">
+      <%= form_tag admin_students_path, method: :get do %>
+        <label for="grade">学年:</label>
+        <%= select_tag 'grade', options_for_select(Student.grades_i18n.invert, @selected_grade), include_blank: "全学年" %>
+        <%= submit_tag '絞り込み' %>
+      <% end %>
+    </div>
+  </div>
 
-  <table class>
+  <table class = "table">
     <tr>
-      <th>学年</th>
-      <th>生徒ID</th>
-      <th>生徒名</th>
-      <th>生徒区分</th>
-      <th>生徒状況</th>
+      <th style= "background-color: #dee2e6;">学年</th>
+      <th style= "background-color: #dee2e6;">生徒ID</th>
+      <th style= "background-color: #dee2e6;">生徒名</th>
+      <th style= "background-color: #dee2e6;">生徒区分</th>
+      <th style= "background-color: #dee2e6;">生徒状況</th>
     </tr>
     <% @selected_students.each do |student| %>
       <tr>

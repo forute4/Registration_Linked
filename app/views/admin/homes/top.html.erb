@@ -1,34 +1,45 @@
-<div class>
-  <div>
-    <h2><新規申込></h2>
-    <h4><%= @today_subscriptions.count %>件</h4>
-    <%= link_to "申込一覧＞", admin_subscriptions_path %>
+<div class= "container mt-4">
+  <div class = "row">
+    <div class='col-md-4 offset-md-1 text-center'>
+      <h2><新規申込></h2>
+      <h4><%= @today_subscriptions.count %>件</h4>
+      <%= link_to "体験生一覧＞", admin_subscriptions_path %>
+    </div>
+
+    <div class='col-md-4 offset-md-2 text-center'>
+      <h2><達成率></h2>
+      <% if @target.present? %>
+        <h4><%= ((@subscription_count.to_f / @target_number) * 100).floor(0) %>%</h4>
+      <% else %>
+        <h4>■%</h4>
+      <% end %>
+      <%= link_to "目標数値一覧＞", admin_target_numbers_path %>
+    </div>
   </div>
 
-  <div>
-    <h2><達成率></h2>
-    <h4><%#= ((@subscription_count.to_f / @target.subscription_number) * 100).floor(0) %>%</h4>
-    <%= link_to "目標数値一覧＞", admin_target_numbers_path %>
-  </div>
-
-  <div>
+  <div class="row mt-5">
+    <div class="col-lg-1"></div>
     <h1>生徒管理</h1>
+  </div>
 
-    <% @new_comments.each do |new_comment|  %>
-      <table class>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10 text-center">
+      <table class="table">
         <tr>
-          <th>生徒ID</th>
-          <th>生徒名</th>
-          <th>コメント</th>
+          <th style= "background-color: #dee2e6;">生徒ID</th>
+          <th style= "background-color: #dee2e6;">生徒名</th>
+          <th style= "background-color: #dee2e6;">コメント</th>
         </tr>
-
+        <% @today_comments.each do |comment|  %>
         <tr>
-          <td><%= new_comment.student.id %></td>
-          <td><%= new_comment.student.last_name %><%= new_comment.student.first_name %></td>
-          <td><%= new_comment.comment %></td>
+          <td><%= comment.student.id %></td>
+          <td><%= comment.student.last_name %><%= comment.student.first_name %></td>
+          <td><%= comment.comment %></td>
         </tr>
+        <% end %>
       </table>
-    <% end %>
+    </div>
   </div>
 
 </div>

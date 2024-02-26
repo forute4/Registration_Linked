@@ -1,148 +1,194 @@
-<div class>
-  <h1>生徒詳細</h1>
-  <%= link_to "編集", edit_admin_student_path %>
+<div class = "container mt-4">
+  <div class = "row">
+    <h1>生徒詳細</h1>
+  </div>
+  <div class = "row">
+    <%= link_to "編集", edit_admin_student_path, class:"btn btn-info" %>
+  </div>
 
-  <table class>
-    <tr>
-      <th>生徒ID</th>
-      <td><%= @student.id %></td>
-      <th>学年</th>
-      <td><%= @student.grade_i18n %></td>
-      <th>生徒区分</th>
-      <td><%= @student.student_status_i18n %></td>
-    </tr>
-    <tr>
-      <th>生徒名</th>
-      <td><%= @student.full_name %></td>
-      <td><%= @student.last_name_kana %><%= @student.first_name_kana %></td>
-    </tr>
-    <tr>
-      <th>学校</th>
-      <td><%= @student.school_name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= @student.email %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= @student.telephone_number %></td>
-    </tr>
-    <tr>
-      <th>郵便番号・住所</th>
-      <td>〒<%= @student.post_code %></td>
-      <td><%= @student.address %></td>
-    </tr>
-    <tr>
-      <th>生徒状況</th>
-      <td><%= @student.situation_status %></td>
-    </tr>
-    <tr>
-      <th>コメント</th>
-      <% @comments.each do |comment| %>
-        <td><%= comment.comment %></td>
-      <% end %>
-    </tr>
-  </table>
-
-  <h3>定期テスト</h3>
-
-  <tbale class>
-    <tr>
-      <th></th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-    </tr>
-    <% if @regular_test.present? %>
-      <% @regular_test.each do |regular_test| %>
-        <tr>
-          <td><%= regular_test.test_name %></td>
-          <td><%= regular_test.english_score %></td>
-          <td><%= regular_test.math_score %></td>
-          <td><%= regular_test.japanese_score %></td>
-          <td><%= regular_test.science_score %></td>
-          <td><%= regular_test.social_score %></td>
-        </tr>
-      <% end %>
-    <% else %>
+  <div class = "row mt-2">
+    <table class = "table">
       <tr>
+        <th style= "background-color: #dee2e6;">生徒ID</th>
+        <td><%= @student.id %></td>
+        <th style= "background-color: #dee2e6;">学年</th>
+        <td><%= @student.grade_i18n %></td>
+        <th style= "background-color: #dee2e6;">生徒区分</th>
+        <td><%= @student.student_status_i18n %></td>
+      </tr>
+      <tr>
+        <th style= "background-color: #dee2e6;">生徒名</th>
+        <td><%= @student.full_name %></td>
+        <td><%= @student.last_name_kana %><%= @student.first_name_kana %></td>
         <td></td>
         <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th style= "background-color: #dee2e6;">学校</th>
+        <td><%= @student.school_name %></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
-    <% end %>
-  </tbale>
-
-  <h3>模擬試験</h3>
-  <tbale class>
-    <tr>
-      <th></th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-    </tr>
-    <% if @practice_exam.present? %>
-      <% @practice_exam.each do |practice_exam| %>
-        <tr>
-          <td><%= practice_exam.test_name %></td>
-          <td><%= practice_exam.english_score %></td>
-          <td><%= practice_exam.math_score %></td>
-          <td><%= practice_exam.japanese_score %></td>
-          <td><%= practice_exam.science_score %></td>
-          <td><%= practice_exam.social_score %></td>
-        </tr>
-      <% end %>
-    <% else %>
       <tr>
-        <td></td>
-        <td></td>
+        <th style= "background-color: #dee2e6;">メールアドレス</th>
+        <td><%= @student.email %></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
-    <% end %>
-  </tbale>
-
-  <h3>内申</h3>
-  <tbale class>
-    <tr>
-      <th></th>
-      <th>英語</th>
-      <th>数学</th>
-      <th>国語</th>
-      <th>理科</th>
-      <th>社会</th>
-    </tr>
-    <% if @confidential_report.present? %>
-      <% @confidential_report.each do |confidential_report| %>
-        <tr>
-          <td><%= confidential_report.test_name %></td>
-          <td><%= confidential_report.english_score %></td>
-          <td><%= confidential_report.math_score %></td>
-          <td><%= confidential_report.japanese_score %></td>
-          <td><%= confidential_report.science_score %></td>
-          <td><%= confidential_report.social_score %></td>
-        </tr>
-      <% end %>
-    <% else %>
       <tr>
-        <td></td>
-        <td></td>
+        <th style= "background-color: #dee2e6;">電話番号</th>
+        <td><%= @student.telephone_number %></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
       </tr>
-    <% end %>
-  </tbale>
+      <tr>
+        <th style= "background-color: #dee2e6;">郵便番号・住所</th>
+        <td>〒<%= @student.post_code %></td>
+        <td colspan="3"><%= @student.address %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th style= "background-color: #dee2e6;">生徒状況</th>
+        <td><%= @student.situation_status %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class = "row">
+    <h3>コメント</h3>
+  </div>
+
+  <% @comments.each do |comment| %>
+    <div class = "row">
+      <div class = "col-lg-1"></div>
+      ・ <%= comment.comment %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %>
+    </div>
+  <% end %>
+
+  <div class ="row mt-3">
+    <h3>定期テスト</h3>
+  </div>
+
+  <div class ="row mt-1">
+    <table class ="table">
+      <tr>
+        <th style= "background-color: #dee2e6; text-align: center;">テスト名</th>
+        <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+        <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+        <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+      </tr>
+      <% if @regular_test.present? %>
+        <% @regular_test.each do |regular_test| %>
+          <tr>
+            <td style="width: 20%; text-align: center;"><%= regular_test.test_name %></td>
+            <td class="text-center"><%= regular_test.english_score %></td>
+            <td class="text-center"><%= regular_test.math_score %></td>
+            <td class="text-center"><%= regular_test.japanese_score %></td>
+            <td class="text-center"><%= regular_test.science_score %></td>
+            <td class="text-center"><%= regular_test.social_score %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td style="width: 20%;"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class ="row mt-3">
+    <h3>模擬試験</h3>
+  </div>
+
+  <div class ="row mt-1">
+    <table class = "table">
+      <tr>
+        <th style= "background-color: #dee2e6; text-align: center;">模試名</th>
+        <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+        <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+        <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+      </tr>
+      <% if @practice_exam.present? %>
+        <% @practice_exam.each do |practice_exam| %>
+          <tr>
+            <td style="width: 20%; text-align: center;"><%= practice_exam.test_name %></td>
+            <td class="text-center"><%= practice_exam.english_score %></td>
+            <td class="text-center"><%= practice_exam.math_score %></td>
+            <td class="text-center"><%= practice_exam.japanese_score %></td>
+            <td class="text-center"><%= practice_exam.science_score %></td>
+            <td class="text-center"><%= practice_exam.social_score %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td style="width: 20%;"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class ="row mt-3">
+    <h3>内申</h3>
+  </div>
+
+  <div class ="row mt-1">
+    <table class = "table">
+      <tr>
+        <th style= "background-color: #dee2e6; text-align: center;">内申</th>
+        <th style= "background-color: #dee2e6; text-align: center;">英語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">数学</th>
+        <th style= "background-color: #dee2e6; text-align: center;">国語</th>
+        <th style= "background-color: #dee2e6; text-align: center;">理科</th>
+        <th style= "background-color: #dee2e6; text-align: center;">社会</th>
+      </tr>
+      <% if @confidential_report.present? %>
+        <% @confidential_report.each do |confidential_report| %>
+          <tr>
+            <td style="width: 20%; text-align: center;"><%= confidential_report.test_name %></td>
+            <td class="text-center"><%= confidential_report.english_score %></td>
+            <td class="text-center"><%= confidential_report.math_score %></td>
+            <td class="text-center"><%= confidential_report.japanese_score %></td>
+            <td class="text-center"><%= confidential_report.science_score %></td>
+            <td class="text-center"><%= confidential_report.social_score %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td style="width: 20%;"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
 </div>

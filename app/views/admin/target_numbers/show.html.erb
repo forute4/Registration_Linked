@@ -1,51 +1,59 @@
-<div class>
-  <h1>目標数値</h1>
-  <h1>申込<%= @target.subscription_number %>件</h1>
-  <h1>入塾<%= @target.continue_number %>件</h1>
-  <p><%= link_to "目標一覧", admin_target_numbers_path %></p>
-  <P><%= link_to "目標変更", edit_admin_target_number_path %></P>
+<div class = "container mt-4">
+  <div class = "row">
+    <div class = "col-lg-2"></div>
+    <div class = "col-lg-3">
+      <h1>目標数値</h1>
+    </div>
+    <div class = "col-lg-3">
+      <h1>申込<%= @target.subscription_number %>件</h1>
+    </div>
+    <div class = "col-lg-3">
+      <h1>入塾<%= @target.continue_number %>件</h1>
+    </div>
+  </div>
 
-  <table class>
-    <tr>
-      <th></th>
-      <th>数値</th>
-      <th>コメント</th>
-    </tr>
-    <tr>
-      <th>達成率</th>
-      <td><%= ((@subscription_count.to_f / @target.subscription_number) * 100).floor(0) %>%</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>申込件数</th>
-      <td><%= @subscription_count %>件</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>達成まで</th>
-      <td><%= @target.subscription_number - @subscription_count %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>入塾率</th>
-      <td><%= ((@continue_count.to_f / @target.continue_number) * 100).floor(0) %>%</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>入塾件数</th>
-      <td><%= @continue_count %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>達成まで</th>
-      <td><%= @target.continue_number - @continue_count %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>退塾数</th>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
+  <div class = "row mt-4">
+    <div class = "col-lg-1"></div>
+    <div class = "col-lg-4 text-center">
+      <table class = "table">
+        <tr>
+          <th style= "background-color: #dee2e6; text-align: center;"></th>
+          <th style= "background-color: #dee2e6; text-align: center;">数値</th>
+        </tr>
+        <tr>
+          <th>達成率</th>
+          <td><%= ((@subscription_count.to_f / @target.subscription_number) * 100).floor(0) %>%</td>
+        </tr>
+        <tr>
+          <th>申込件数</th>
+          <td><%= @subscription_count %>件</td>
+        </tr>
+        <tr>
+          <th>達成まで</th>
+          <td><%= @target.subscription_number - @subscription_count %></td>
+        </tr>
+        <tr>
+          <th>入塾率</th>
+          <td><%= ((@continue_count.to_f / @target.continue_number) * 100).floor(0) %>%</td>
+        </tr>
+        <tr>
+          <th>入塾件数</th>
+          <td><%= @continue_count %></td>
+        </tr>
+        <tr>
+          <th>達成まで</th>
+          <td><%= @target.continue_number - @continue_count %></td>
+        </tr>
+      </table>
+    
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col-lg-1"></div>
+    <p><%= link_to "　目標一覧に戻る", admin_target_numbers_path %></p>
+    <div class = "col-lg-1"></div>
+    <P><%= link_to "目標変更", edit_admin_target_number_path %></P>
+  </div>
 
 </div>

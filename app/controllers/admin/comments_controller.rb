@@ -11,7 +11,7 @@ class Admin::CommentsController < ApplicationController
     else
       # もし保存に失敗した場合の処理を追加することも考えてください
       flash.now[:alert] = 'コメントの投稿に失敗しました。'
-      render 'admin_students/show' # または適切なビュー名を指定してください
+      render 'admin_students/edit' # または適切なビュー名を指定してください
     end
   end
 

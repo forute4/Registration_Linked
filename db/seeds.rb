@@ -20,6 +20,11 @@ Admin.create!(
    name: '00001'
 )
 
+Admin.create!(
+   email: 'bb@bb',
+   password: 'test222',
+   name: '00002'
+)
 # You can add more admin users if needed by duplicating the above line with different data.
 
 # Run this seed file using the following command:

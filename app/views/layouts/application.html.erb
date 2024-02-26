@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>RegistrationLinked</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/c7aca99b4f.js" crossorigin="anonymous"></script>
   </head>
-    <%= render '/layouts/header' %>
-  <body>
-    <%= yield %>
+
+
+
+  <body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+      <header>
+        <%= render '/layouts/header' %>
+      </header>
+
+      <%= yield %>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <%= render '/layouts/footer' %>
+    </footer>
   </body>
+
+
 </html>
