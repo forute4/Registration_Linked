@@ -13,7 +13,7 @@
   </div>
 
   <div class = "row mt-4">
-    <div class = "col-lg-1"></div>
+    <div class = "col-lg-4"></div>
     <div class = "col-lg-4 text-center">
       <table class = "table">
         <tr>
@@ -45,15 +45,14 @@
           <td><%= @target.continue_number - @continue_count %></td>
         </tr>
       </table>
-    
     </div>
   </div>
   
   <div class = "row">
-    <div class = "col-lg-1"></div>
-    <p><%= link_to "　目標一覧に戻る", admin_target_numbers_path %></p>
-    <div class = "col-lg-1"></div>
-    <P><%= link_to "目標変更", edit_admin_target_number_path %></P>
+    <div class = "col-lg-4"></div>
+    <div class = "col-lg-3">
+      <a><%= link_to "　目標一覧に戻る", admin_target_numbers_path %></a>
+    </div>
+      <a><%= link_to "目標変更", edit_admin_target_number_path %></a>
   </div>
-
 </div>

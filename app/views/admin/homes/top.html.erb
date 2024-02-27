@@ -9,7 +9,7 @@
     <div class='col-md-4 offset-md-2 text-center'>
       <h2><達成率></h2>
       <% if @target.present? %>
-        <h4><%= ((@subscription_count.to_f / @target_number) * 100).floor(0) %>%</h4>
+        <h4><%= ((@subscription_count.to_f / @target.subscription_number) * 100).floor(0) %>%</h4>
       <% else %>
         <h4>■%</h4>
       <% end %>

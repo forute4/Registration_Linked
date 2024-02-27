@@ -1,16 +1,6 @@
 <%= render '/subscriptions/header' %>
 
 <div class= "container mt-4">
-  
-    <% if @student.errors.any? %>
-      <%= @student.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @student.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
   <div class= "row">
     <div class = "col-lg-1"></div>
     
@@ -21,56 +11,56 @@
           <table class= "table">
             <tr>
               <th style= "background-color: #dee2e6;">名前(お子様)</th>
-              <td><%= f.label :last_name, "姓　　" %><%= f.text_field :last_name %></td>
-              <td><%= f.label :first_name, "名　　" %><%= f.text_field :first_name %></td>
+              <td><%= f.label :last_name, "姓　　" %><%= f.text_field :last_name, required: true %></td>
+              <td><%= f.label :first_name, "名　　" %><%= f.text_field :first_name, required: true %></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">カナ名(お子様)</th>
-              <td><%= f.label :last_name_kana, "セイ　" %><%= f.text_field :last_name_kana %></td>
-              <td><%= f.label :first_name_kana, "メイ　" %><%= f.text_field :first_name_kana %></td>
+              <td><%= f.label :last_name_kana, "セイ　" %><%= f.text_field :last_name_kana, required: true %></td>
+              <td><%= f.label :first_name_kana, "メイ　" %><%= f.text_field :first_name_kana, required: true %></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">郵便番号(ハイフンなし)</th>
-              <td><%= f.text_field :post_code %></td>
+              <td><%= f.text_field :post_code, required: true %></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">住所</th>
-              <td><%= f.text_field :address, size: 50 %></td>
+              <td><%= f.text_field :address, required: true, size: 50 %></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">電話番号(ハイフンなし)</th>
-              <td><%= f.text_field :telephone_number, size: 50 %></td>
+              <td><%= f.text_field :telephone_number, required: true, size: 50 %></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">メールアドレス</th>
-              <td><%= f.text_field :email, size: 50 %></td>
+              <td><%= f.text_field :email, required: true, size: 50 %></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">学年</th>
-              <td><%= f.select :grade, Student.grades_i18n.invert, include_blank: "学年を選択して下さい" %></td>
+              <td><%= f.select :grade, Student.grades_i18n.invert, {include_blank: "学年を選択して下さい"}, required: true %></td>
               <td></td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th style= "background-color: #dee2e6;">お通いの学校名</th>
-              <td><%= f.text_field :school_name, size: 50 %></td>
+              <td><%= f.text_field :school_name, required: true, size: 50 %></td>
               <td></td>
               <td></td>
               <td></td>
@@ -84,4 +74,3 @@
   </div>
 </div>
 
-<%= render '/subscriptions/footer' %>

@@ -22,34 +22,23 @@
 class Admin::TestsController < ApplicationController
   before_action :find_student
 
-  # def create
-  #   @test_new = @student.tests.build(test_params)
-  #   byebug
-  #   if @test_new.save
-  #     redirect_to admin_student_path(@student)
-  #   else
-  #     # エラー処理が必要な場合に追加
-  #     render :new
-  #   end
-  # end
+  
   def create
     @test_new = @student.tests.build(test_params)
 
     if @test_new.save
-      redirect_to admin_student_path(@student), notice: 'テストが登録されました。'
+      redirect_to admin_student_path(@student)
     else
-      flash.now[:alert] = 'テストの登録に失敗しました。'
-      render 'admin_students/edit'
+      redirect_to edit_admin_student(@student)
     end
   end
 
   def update
-    @test_edit = @student.tests.find(params[:id])
-    if @test_edit.update(test_params)
+    test_edit = @student.tests.find(params[:id])
+    if test_edit.update(test_params)
       redirect_to admin_student_path(@student)
     else
-      # エラー処理が必要な場合に追加
-      render 'admin_students/edit'
+      redirect_to edit_admin_student(@student)
     end
   end
 

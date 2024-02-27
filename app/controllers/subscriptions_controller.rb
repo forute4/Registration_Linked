@@ -1,15 +1,19 @@
 class SubscriptionsController < ApplicationController
+  
+  def top
+  end
+  
   def new
     @student= Student.new
   end
 
   def create
-    @student= Student.new(student_params.merge(student_status: 1,situation_status: 1))
+    @student= Student.new(student_params.merge(student_status: 'trial_student',situation_status: 'A'))
     @student.subscription_day= Date.today
     if@student.save
       redirect_to subscriptions_thanks_path
     else
-      render :new
+      redirect_to new_subscription
     end
   end
 

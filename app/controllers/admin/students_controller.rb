@@ -4,7 +4,8 @@ class Admin::StudentsController < ApplicationController
 
   def index
     @students= Student.all
-    @internal_students= Student.where(student_status: [1,2])
+    #生徒ステータスが体験生内部生の生徒
+    @internal_students= Student.where(student_status: ['trial_student','internal_student'])
     @grades = @internal_students.grades.keys
     @selected_grade = params[:grade]
     if @selected_grade.present?
@@ -19,9 +20,9 @@ class Admin::StudentsController < ApplicationController
     @comments= @student.comments
     @tests= @student.tests
     if @tests.present?
-      @regular_test= @tests.where(test_status: 1)
-      @practice_exam= @tests.where(test_status: 2)
-      @confidential_report= @tests.where(test_status: 3)
+      @regular_test= @tests.where(test_status: 'regular_test')
+      @practice_exam= @tests.where(test_status: 'pracrice_exam')
+      @confidential_report= @tests.where(test_status: 'confidential_report')
     else
       @tests
     end
@@ -34,9 +35,9 @@ class Admin::StudentsController < ApplicationController
     @test_new= Test.new
     @tests= @student.tests
     if @tests.present?
-      @regular_test= @tests.where(test_status: 1)
-      @practice_exam= @tests.where(test_status: 2)
-      @confidential_report= @tests.where(test_status: 3)
+      @regular_test= @tests.where(test_status: 'regular_test')
+      @practice_exam= @tests.where(test_status: 'pracrice_exam')
+      @confidential_report= @tests.where(test_status: 'confidential_report')
     else
       @tests
     end
@@ -47,11 +48,11 @@ class Admin::StudentsController < ApplicationController
     if @student.update(student_params)
       redirect_to admin_student_path(@student)
     else
-      render :edit
+      redirect_to edit_admin_student_path(@student)
     end
   end
-  
-  
+
+
 
   private
 

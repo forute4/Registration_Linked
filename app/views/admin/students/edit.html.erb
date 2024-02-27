@@ -1,20 +1,9 @@
-
 <div class = "container mt-4">
-  <% if @student.errors.any? %>
-    <%= @student.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  
-
   <div class = "row">
     <h1>生徒情報編集</h1>
   </div>
   <div class = "row">
-    <%= link_to "詳細画面に戻る", admin_student_path %>
+    <%= link_to "詳細画面に戻る", admin_student_path(@student) %>
   </div>
 
   <%= form_with model: @student, url: admin_student_path(@student), method: :patch do |f| %>
@@ -54,15 +43,15 @@
         </tr>
         <tr>
           <th style= "background-color: #dee2e6;">生徒名</th>
-          <td><%= f.text_field :last_name %><%= f.text_field :first_name %></td>
-          <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
+          <td><%= f.text_field :last_name, required: true %><%= f.text_field :first_name, required: true %></td>
+          <td><%= f.text_field :last_name_kana, required: true %><%= f.text_field :first_name_kana, required: true %></td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <th style= "background-color: #dee2e6;">学校</th>
-          <td><%= f.text_field :school_name %></td>
+          <td><%= f.text_field :school_name, required: true %></td>
           <td></td>
           <td></td>
           <td></td>
@@ -70,7 +59,7 @@
         </tr>
         <tr>
           <th style= "background-color: #dee2e6;">メールアドレス</th>
-          <td><%= f.text_field :email %></td>
+          <td><%= f.text_field :email, required: true %></td>
           <td></td>
           <td></td>
           <td></td>
@@ -78,7 +67,7 @@
         </tr>
         <tr>
           <th style= "background-color: #dee2e6;">電話番号</th>
-          <td><%= f.text_field :telephone_number %></td>
+          <td><%= f.text_field :telephone_number, required: true %></td>
           <td></td>
           <td></td>
           <td></td>
@@ -86,8 +75,8 @@
         </tr>
         <tr>
           <th style= "background-color: #dee2e6;">郵便番号・住所</th>
-          <td><%= f.text_field :post_code %></td>
-          <td><%= f.text_field :address, size: 50 %></td>
+          <td><%= f.text_field :post_code, required: true %></td>
+          <td><%= f.text_field :address, required: true, size: 50 %></td>
           <td></td>
           <td></td>
           <td></td>
@@ -118,7 +107,7 @@
     <div class = "row">
       <div class = "col-lg-1"></div>
       <div class = "col-lg-11">
-        <%= f.text_area :comment, class: 'form-control', rows: 5%>
+        <%= f.text_area :comment, required: true, class: 'form-control', rows: 5%>
       </div>
     </div>
     <div class = "row">
@@ -194,7 +183,7 @@
   <div class = "row mt-1">
     <% if @practice_exam.present? %>
       <% @practice_exam.each_with_index do |practice_exam, i| %>
-        <%= form_with model: practice_exam, url: admin_student_test_path(@student,regular_test), method: :patch  do |f| %>
+        <%= form_with model: practice_exam, url: admin_student_test_path(@student,practice_exam), method: :patch  do |f| %>
           <table class = "table">
             <% if i == 0 %>
               <tr>
@@ -252,7 +241,7 @@
   <div class = "row mt-1">
     <% if @confidential_report.present? %>
       <% @confidential_report.each_with_index do |confidential_report, i| %>
-        <%= form_with model: confidential_report, url: admin_student_test_path(@student,regular_test), method: :patch  do |f| %>
+        <%= form_with model: confidential_report, url: admin_student_test_path(@student,confidential_report), method: :patch  do |f| %>
           <table class = "table">
             <% if i == 0 %>
               <tr>
@@ -303,6 +292,7 @@
     <% end %>
   </div>
 
+
   <div class = "row">
     <h2><テスト新規登録></h2>
   </div>
@@ -327,7 +317,7 @@
           <td><%= f.text_field :japanese_score, size: 10, class: 'text-center' %></td>
           <td><%= f.text_field :science_score, size: 10, class: 'text-center' %></td>
           <td><%= f.text_field :social_score, size: 10, class: 'text-center' %></td>
-          <td><%= f.select :test_status, Test.test_statuses_i18n.invert, include_blank: "選択して下さい", class: 'text-center' %></td>
+          <td><%= f.select :test_status, Test.test_statuses_i18n.invert, {include_blank: "選択して下さい"}, required: true, class: 'text-center' %></td>
           <td><%= f.submit "登録",class:"btn btn-primary text-center" %></td>
         </tr>
       </table>
