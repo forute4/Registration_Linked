@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
      resources :subscriptions, only: [:new, :create]
-    get "subscriptions/top"=> "subscriptions#top"
+    root "subscriptions#top"
     get "subscriptions/thanks"=> "subscriptions#thanks"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
