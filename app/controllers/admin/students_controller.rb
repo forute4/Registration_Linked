@@ -4,8 +4,9 @@ class Admin::StudentsController < ApplicationController
 
   def index
     @students= Student.all
-    #生徒ステータスが体験生内部生の生徒
+    #生徒ステータスが体験生もしくは内部生の生徒
     @internal_students= Student.where(student_status: ['trial_student','internal_student'])
+    #上記の生徒の学年
     @grades = @internal_students.grades.keys
     @selected_grade = params[:grade]
     if @selected_grade.present?

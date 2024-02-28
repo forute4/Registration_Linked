@@ -19,8 +19,10 @@ class Admin::TargetNumbersController < ApplicationController
     @target= TargetNumber.find(params[:id])
     start_date= @target.start_day
     finish_date= @target.finish_day
+    #申込された期間がstart_dayからfinish_dayの生徒
     subscriptions_in_range= Student.where(subscription_day: start_date..finish_date)
     @subscription_count= subscriptions_in_range.count
+    #申込された期間がstart_dayからfinish_dayの生徒のうち内部生になった生徒
     continue_in_range=Student.where(subscription_day: start_date..finish_date).internal_student
     @continue_count= continue_in_range.count
   end
