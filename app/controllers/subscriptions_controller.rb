@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
   
   def top
+    
   end
   
   def new
